@@ -16,10 +16,10 @@ export function EditDialog(props) {
     };
 
     const editItem = () => {
-      console.log(name+" "+count)
       fetch("/edit", {method: 'POST', headers: {
         'Content-Type': 'application/json'}, body: JSON.stringify({name: name, count: parseInt(count), id: curItem.ItemID})})
-          .then(onClose());
+        .then(res => res.status)
+        .then(() => onClose());
     }
 
     return (

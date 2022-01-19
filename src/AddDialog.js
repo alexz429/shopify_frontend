@@ -15,10 +15,10 @@ export function AddDialog(props) {
     };
 
     const addItem = () => {
-      console.log(name+" "+count)
       fetch("/create", {method: 'POST', headers: {
         'Content-Type': 'application/json'}, body: JSON.stringify({name: name, count: parseInt(count)})})
-          .then(onClose())
+          .then(res => res.status)
+          .then(() => onClose());
     }
 
     return (

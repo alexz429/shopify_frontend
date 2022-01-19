@@ -18,7 +18,13 @@ export default function ItemTable() {
   const [addOpen, setAddOpen] = React.useState(false);
   const [editOpen, setEditOpen] = React.useState(false);
   const [curItem, setCurItem] = React.useState({});
+  
+  const handleClose = () => {
+    setEditOpen(false);
+    setAddOpen(false);
+  }
   React.useEffect(() => {
+    console.log("pop");
     fetch("/items")
       .then((res) => res.json())
       .then((data) => {
@@ -74,11 +80,11 @@ export default function ItemTable() {
       </Table>
       <AddDialog
         open={addOpen}
-        onClose={() => setAddOpen(false)}
+        onClose={handleClose}
       />
       <EditDialog
         open={editOpen}
-        onClose={() => setEditOpen(false)}
+        onClose={handleClose}
         curItem={curItem}
       />
     </TableContainer>
